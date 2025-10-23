@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Icon Generator</title>
+</head>
+<body>
+    <canvas id="icon" width="128" height="128"></canvas>
+    <script>
+        const canvas = document.getElementById('icon');
+        const ctx = canvas.getContext('2d');
+        
+        // Background
+        ctx.fillStyle = '#3498db';
+        ctx.fillRect(0, 0, 128, 128);
+        
+        // Border radius effect
+        ctx.globalCompositeOperation = 'destination-in';
+        ctx.beginPath();
+        ctx.roundRect(0, 0, 128, 128, 16);
+        ctx.fill();
+        ctx.globalCompositeOperation = 'source-over';
+        
+        // Document icon in white
+        ctx.fillStyle = 'white';
+        ctx.fillRect(30, 25, 68, 78);
+        
+        // Lines representing text/data
+        ctx.fillStyle = '#3498db';
+        ctx.fillRect(40, 40, 48, 4);
+        ctx.fillRect(40, 50, 48, 4);
+        ctx.fillRect(40, 60, 48, 4);
+        ctx.fillRect(40, 70, 30, 4);
+        ctx.fillRect(40, 80, 40, 4);
+        
+        // Download arrow
+        ctx.fillStyle = 'white';
+        ctx.beginPath();
+        ctx.moveTo(64, 85);
+        ctx.lineTo(54, 75);
+        ctx.lineTo(60, 75);
+        ctx.lineTo(60, 65);
+        ctx.lineTo(68, 65);
+        ctx.lineTo(68, 75);
+        ctx.lineTo(74, 75);
+        ctx.closePath();
+        ctx.fill();
+        
+        // Convert to blob and create download link
+        canvas.toBlob(function(blob) {
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'icon.png';
+            a.click();
+        });
+    </script>
+</body>
+</html>

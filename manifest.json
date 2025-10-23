@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Batch Maker",
+  "version": "1.0",
+  "description": "Split large PIX payments into compliant batches for Brazilian banks",
+  "permissions": [
+    "downloads"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Batch Maker"
+  },
+  "icons": {
+    "16": "icon.svg",
+    "32": "icon.svg",
+    "48": "icon.svg",
+    "128": "icon.svg"
+  }
+}

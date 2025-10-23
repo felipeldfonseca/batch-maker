@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Batch Maker</h1>
+    
+    <div class="form-group">
+      <label for="recipient">Destinatário:</label>
+      <select id="recipient">
+        <option value="">Selecione o destinatário</option>
+        <option value="brasil-bitcoin">Brasil Bitcoin</option>
+        <option value="caldeira">Caldeira</option>
+        <option value="securitas">Securitas</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="amount">Valor Total (BRL):</label>
+      <input type="text" id="amount" placeholder="Ex: 100.000,00" inputmode="numeric">
+    </div>
+
+    <div class="form-group">
+      <label for="pix-key">Chave PIX:</label>
+      <input type="text" id="pix-key" placeholder="Chave PIX será preenchida automaticamente" readonly>
+      <button type="button" id="edit-pix" class="edit-btn">Editar</button>
+    </div>
+
+    <div class="form-group">
+      <button id="generate-csv" class="generate-btn" disabled>Gerar CSV</button>
+    </div>
+
+    <div id="info" class="info-box" style="display: none;">
+      <p>Total de transações: <span id="transaction-count">0</span></p>
+      <p>Valor médio por transação: R$ <span id="avg-amount">0</span></p>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
