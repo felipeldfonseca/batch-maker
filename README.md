@@ -1,35 +1,115 @@
-# Batch Maker - Chrome Extension
+# Batch Maker - Extensão do Chrome
 
-Chrome extension for splitting large PIX payments into compliant batches for Brazilian banks.
+Extensão do Chrome para dividir grandes pagamentos PIX em lotes compatíveis com as regulamentações dos bancos brasileiros.
 
-## Installation
+## 📱 Funcionalidades
 
-1. Open Chrome and go to `chrome://extensions/`
-2. Enable "Developer mode" (toggle in top right)
-3. Click "Load unpacked"
-4. Select the `batch-maker` folder
-5. The extension will appear in your browser toolbar
+- **Interface moderna** com tema escuro profissional
+- **Formatação brasileira** de números (X.XXX,XX)
+- **Resumo completo** da operação antes do download
+- **Popup personalizado** de confirmação
+- **Animações suaves** e micro-interações
+- **3 destinatários pré-configurados** (Brasil Bitcoin, Caldeira, Securitas)
 
-## Usage
+## 🚀 Instalação
 
-1. Click the Batch Maker icon in Chrome toolbar
-2. Select recipient from dropdown (Brasil Bitcoin, Caldeira, or Securitas)
-3. Enter total amount to send (minimum R$ 15,000)
-4. PIX key auto-fills (click "Editar" to modify if needed)
-5. Click "Gerar CSV" to download the batch file
+1. Abra o Chrome e vá para `chrome://extensions/`
+2. Ative o "Modo do desenvolvedor" (toggle no canto superior direito)
+3. Clique em "Carregar sem compactação"
+4. Selecione a pasta `batch-maker`
+5. A extensão aparecerá na barra de ferramentas do seu navegador
 
-## How it Works
+## 📖 Como Usar
 
-- Splits payments starting at R$ 14,999
-- Each subsequent transaction decreases by R$ 1 (14,998, 14,997, etc.)
-- Continues until total amount is reached
-- Generates CSV with: Razão Social, CNPJ, PIX key, Amount
-- No headers in CSV (as required by banks)
+1. **Clique no ícone** do Batch Maker na barra de ferramentas do Chrome
+2. **Selecione o destinatário** no dropdown (Brasil Bitcoin, Caldeira ou Securitas)
+3. **Digite o valor total** a enviar (mínimo R$ 15.000,00)
+4. **A chave PIX** é preenchida automaticamente (clique em "Editar" para modificar se necessário)
+5. **Clique em "Gerar CSV"** para baixar o arquivo de lote
 
-## Files
+## ⚙️ Como Funciona
 
-- `manifest.json` - Extension configuration
-- `popup.html` - User interface
-- `popup.js` - Payment logic and CSV generation
-- `popup.css` - Styling
-- `icon.svg` - Extension icon
+### Lógica de Divisão
+- Inicia com pagamentos de **R$ 14.999,00**
+- Cada transação subsequente **diminui R$ 1,00** (14.998, 14.997, etc.)
+- Continua até que o valor total seja alcançado
+- **Nunca repete valores**, conforme exigido pelo Banco Central
+
+### Formato do CSV
+- **Razão Social**, **CNPJ**, **Chave PIX**, **Valor**
+- Valores formatados com vírgula para decimais (ex: 14999,00)
+- Campos entre aspas para escape adequado
+- **Sem cabeçalhos** (conforme exigido pelos bancos)
+
+### Exemplo de Saída
+```csv
+"BRASIL BITCOIN SERVICOS DIGITAIS LTDA","29.519.837/0001-23","66499dab-b165-4096-aaf8-18935d6167bc","14999,00"
+"BRASIL BITCOIN SERVICOS DIGITAIS LTDA","29.519.837/0001-23","66499dab-b165-4096-aaf8-18935d6167bc","14998,00"
+"BRASIL BITCOIN SERVICOS DIGITAIS LTDA","29.519.837/0001-23","66499dab-b165-4096-aaf8-18935d6167bc","14997,00"
+```
+
+## 🏦 Destinatários Pré-configurados
+
+### 1. Brasil Bitcoin (Exchange)
+- **Razão Social:** BRASIL BITCOIN SERVICOS DIGITAIS LTDA
+- **CNPJ:** 29.519.837/0001-23
+- **Chave PIX:** 66499dab-b165-4096-aaf8-18935d6167bc
+
+### 2. Caldeira (Exchange)
+- **Razão Social:** CB TECNOLOGIA E INTERMEDIACAO LTDA
+- **CNPJ:** 31.432.059/0001-82
+- **Chave PIX:** e12e73a0-d47b-4674-a3c9-8accec5c4f27
+
+### 3. Securitas (Conta Bancária)
+- **Razão Social:** SECURITAS DIGITAL ASSETS LTDA
+- **CNPJ:** 55.200.012/0001-51
+- **Chave PIX:** d9260002-6da3-47d8-959e-86a136e7a8ca
+
+## 🎨 Interface
+
+### Tema Escuro Moderno
+- **Fundo:** #121212 (preto profundo)
+- **Cartões:** #1E1E1E (carvão escuro)
+- **Texto Principal:** #E0E0E0 (cinza claro)
+- **Texto Secundário:** #A0A0A0 (cinza médio)
+- **Acentos:** Gradientes roxo (#BB86FC) e teal (#03DAC6)
+
+### Animações
+- **Entrada suave** dos elementos
+- **Efeitos de hover** nos botões
+- **Transições fluidas** nos campos de entrada
+- **Popup animado** de confirmação
+
+## 📁 Estrutura de Arquivos
+
+- `manifest.json` - Configuração da extensão
+- `popup.html` - Interface do usuário
+- `popup.js` - Lógica de pagamentos e geração de CSV
+- `popup.css` - Estilização e animações
+- `icon.svg` - Ícone da extensão
+
+## 📋 Conformidade Regulatória
+
+Esta extensão foi desenvolvida para atender às regulamentações do **Banco Central do Brasil**:
+
+- **Limite máximo** de R$ 15.000,00 por transação PIX
+- **Valores únicos** em cada transação (não repetição)
+- **Formato CSV** compatível com sistemas bancários
+- **Documentação completa** para auditoria
+
+## 🔒 Segurança
+
+- **Não armazena dados** pessoais ou financeiros
+- **Processamento local** - nenhuma informação é enviada para servidores externos
+- **Código aberto** - totalmente auditável
+- **Sem permissões sensíveis** - apenas download de arquivos
+
+## 📞 Suporte
+
+Para reportar problemas ou sugerir melhorias, abra uma issue no [repositório do GitHub](https://github.com/felipeldfonseca/batch-maker).
+
+---
+
+**Desenvolvido para instituições financeiras brasileiras** 🇧🇷
+
+*Esta ferramenta facilita a conformidade com as regulamentações do Banco Central do Brasil para pagamentos PIX em lote.*
