@@ -25,7 +25,11 @@ const editPixBtn = document.getElementById('edit-pix');
 const generateBtn = document.getElementById('generate-csv');
 const infoBox = document.getElementById('info');
 const transactionCount = document.getElementById('transaction-count');
-const avgAmount = document.getElementById('avg-amount');
+const recipientName = document.getElementById('recipient-name');
+const totalAmount = document.getElementById('total-amount');
+const successPopup = document.getElementById('success-popup');
+const successMessage = document.getElementById('success-message');
+const closePopupBtn = document.getElementById('close-popup');
 
 // Brazilian number formatting functions
 function formatBrazilianNumber(value) {
@@ -46,6 +50,7 @@ amountInput.addEventListener('input', handleAmountChange);
 amountInput.addEventListener('blur', formatAmountDisplay);
 editPixBtn.addEventListener('click', handleEditPix);
 generateBtn.addEventListener('click', generateCSV);
+closePopupBtn.addEventListener('click', closeSuccessPopup);
 
 function handleRecipientChange() {
   const selectedRecipient = recipients[recipientSelect.value];
@@ -99,14 +104,15 @@ function updateGenerateButton() {
 
 function updateInfo() {
   const amount = parseBrazilianNumber(amountInput.value);
+  const selectedRecipientKey = recipientSelect.value;
+  const selectedRecipient = recipients[selectedRecipientKey];
   
-  if (amount >= 15000) {
+  if (amount >= 15000 && selectedRecipient) {
     const batches = calculateBatches(amount);
-    const avgValue = batches.length > 0 ? (amount / batches.length) : 0;
-    const avgAmountValue = avgValue.toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     
+    recipientName.textContent = selectedRecipient.name;
     transactionCount.textContent = batches.length;
-    avgAmount.textContent = avgAmountValue;
+    totalAmount.textContent = formatBrazilianNumber(amount);
     infoBox.style.display = 'block';
   } else {
     infoBox.style.display = 'none';
@@ -178,6 +184,20 @@ function generateCSV() {
   link.click();
   document.body.removeChild(link);
   
-  // Show success message
-  alert(`CSV gerado com sucesso!\n${batches.length} transações totalizando R$ ${formatBrazilianNumber(totalAmount)}`);
+  // Show success popup
+  showSuccessPopup(batches.length, totalAmount);
+}
+
+function showSuccessPopup(batchCount, amount) {
+  successMessage.textContent = `${batchCount} transações totalizando ${formatBrazilianNumber(amount)}`;
+  successPopup.style.display = 'flex';
+  
+  // Auto close after 10 seconds
+  setTimeout(() => {
+    closeSuccessPopup();
+  }, 10000);
+}
+
+function closeSuccessPopup() {
+  successPopup.style.display = 'none';
 }

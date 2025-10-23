@@ -34,8 +34,20 @@
     </div>
 
     <div id="info" class="info-box" style="display: none;">
+      <h3>Resumo:</h3>
+      <p><strong id="recipient-name">-</strong></p>
       <p>Total de transações: <span id="transaction-count">0</span></p>
-      <p>Valor médio por transação: R$ <span id="avg-amount">0</span></p>
+      <p>Valor total: <span id="total-amount">R$ 0,00</span></p>
+    </div>
+  </div>
+
+  <!-- Success Popup -->
+  <div id="success-popup" class="popup-overlay" style="display: none;">
+    <div class="popup-content">
+      <div class="popup-icon">✓</div>
+      <h3>Download Concluído!</h3>
+      <p id="success-message">CSV gerado com sucesso</p>
+      <button id="close-popup" class="popup-btn">Fechar</button>
     </div>
   </div>
 
